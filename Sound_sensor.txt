@@ -1,0 +1,27 @@
+import RPi.GPIO as GPIO
+import time
+
+# Set up GPIO mode
+GPIO.setmode(GPIO.BCM)
+
+
+sound_sensor_pin = 17
+GPIO.setup(sound_sensor_pin, GPIO.IN)
+
+try:
+    while True:
+        
+        sound_value = GPIO.input(sound_sensor_pin)
+        
+        
+        if sound_value == 1:
+            print("Sound detected!")
+        else:
+            print("No sound detected.")
+        
+        
+        time.sleep(0.5)
+
+except KeyboardInterrupt:
+    
+    GPIO.cleanup()
